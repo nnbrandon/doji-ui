@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/doji/static/css/main.df537c90.chunk.css",
-    "main.js": "/doji/static/js/main.ed744877.chunk.js",
-    "main.js.map": "/doji/static/js/main.ed744877.chunk.js.map",
-    "runtime-main.js": "/doji/static/js/runtime-main.0b70472e.js",
-    "runtime-main.js.map": "/doji/static/js/runtime-main.0b70472e.js.map",
-    "static/js/2.e9bf6e50.chunk.js": "/doji/static/js/2.e9bf6e50.chunk.js",
-    "static/js/2.e9bf6e50.chunk.js.map": "/doji/static/js/2.e9bf6e50.chunk.js.map",
-    "static/js/3.1312afea.chunk.js": "/doji/static/js/3.1312afea.chunk.js",
-    "static/js/3.1312afea.chunk.js.map": "/doji/static/js/3.1312afea.chunk.js.map",
-    "index.html": "/doji/index.html",
-    "static/css/main.df537c90.chunk.css.map": "/doji/static/css/main.df537c90.chunk.css.map",
-    "static/js/2.e9bf6e50.chunk.js.LICENSE.txt": "/doji/static/js/2.e9bf6e50.chunk.js.LICENSE.txt"
+    "main.css": "/doji-ui/static/css/main.df537c90.chunk.css",
+    "main.js": "/doji-ui/static/js/main.ed744877.chunk.js",
+    "main.js.map": "/doji-ui/static/js/main.ed744877.chunk.js.map",
+    "runtime-main.js": "/doji-ui/static/js/runtime-main.2a1064c6.js",
+    "runtime-main.js.map": "/doji-ui/static/js/runtime-main.2a1064c6.js.map",
+    "static/js/2.e9bf6e50.chunk.js": "/doji-ui/static/js/2.e9bf6e50.chunk.js",
+    "static/js/2.e9bf6e50.chunk.js.map": "/doji-ui/static/js/2.e9bf6e50.chunk.js.map",
+    "static/js/3.1312afea.chunk.js": "/doji-ui/static/js/3.1312afea.chunk.js",
+    "static/js/3.1312afea.chunk.js.map": "/doji-ui/static/js/3.1312afea.chunk.js.map",
+    "index.html": "/doji-ui/index.html",
+    "static/css/main.df537c90.chunk.css.map": "/doji-ui/static/css/main.df537c90.chunk.css.map",
+    "static/js/2.e9bf6e50.chunk.js.LICENSE.txt": "/doji-ui/static/js/2.e9bf6e50.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.0b70472e.js",
+    "static/js/runtime-main.2a1064c6.js",
     "static/js/2.e9bf6e50.chunk.js",
     "static/css/main.df537c90.chunk.css",
     "static/js/main.ed744877.chunk.js"
