@@ -2,6 +2,14 @@ import { deepmerge } from "@mui/utils";
 import ArrowDropDownRounded from "@mui/icons-material/ArrowDropDownRounded";
 import { createTheme, ThemeOptions, Theme, alpha } from "@mui/material/styles";
 
+export function getTheme(): string | null {
+  return localStorage.getItem("theme") || "light";
+}
+
+export function saveTheme(mode: "light" | "dark") {
+  localStorage.setItem("theme", mode);
+}
+
 declare module "@mui/material/styles/createPalette" {
   interface ColorRange {
     50: string;
@@ -93,7 +101,7 @@ const systemFont = [
 export const getMetaThemeColor = (mode: "light" | "dark") => {
   const themeColor = {
     light: grey[50],
-    dark: blueDark[900],
+    dark: grey[900],
   };
   return themeColor[mode];
 };

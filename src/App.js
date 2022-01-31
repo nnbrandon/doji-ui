@@ -1,17 +1,19 @@
-import { useState, Fragment, useEffect } from "react";
-import { useTheme } from "@mui/material/styles";
+import { useState, Fragment } from "react";
 
 import AppRouter from "./AppRouter";
 import themeContext from "./themeContext";
+import { getTheme, saveTheme } from "./theme";
 import BrandingProvider from "./BrandingProvider";
 
 function App() {
-  const upperTheme = useTheme();
-  const mode = upperTheme.palette.mode;
-  const [themeMode, setThemeMode] = useState(mode);
+  const [themeMode, setThemeMode] = useState(getTheme());
 
   function toggleMode() {
-    setThemeMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+    setThemeMode((prevMode) => {
+      const nextMode = prevMode === "light" ? "dark" : "light";
+      saveTheme(nextMode);
+      return nextMode;
+    });
   }
 
   return (
