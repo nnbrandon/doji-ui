@@ -1,9 +1,12 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { useCallback, useEffect, useState } from "react";
+import MenuIcon from "@mui/icons-material/Menu";
+import Divider from "@mui/material/Divider";
+
 import DashboardRouter from "./DashboardRouter";
 import styles from "./Dashboard.module.scss";
 
-import { AddTickerModal, Navbar } from "../../components";
+import AddTickerModal from "../../components/AddTickerModal/AddTickerModal";
+import Navbar from "../../components/Navbar/Navbar";
 import { fetchTickers as grabTickers } from "../../services/tickerService";
 
 function Dashboard({ match }) {
@@ -46,10 +49,9 @@ function Dashboard({ match }) {
         />
       )}
       {!showNavBar && (
-        <div className={styles.hamburger}>
-          <GiHamburgerMenu alt="menu" onClick={onCloseNav} size="30px" />
-        </div>
+        <MenuIcon alt="menu" onClick={onCloseNav} fontSize="large" />
       )}
+      {showNavBar && <Divider orientation="vertical" />}
       <div className={styles.view}>
         <DashboardRouter />
       </div>

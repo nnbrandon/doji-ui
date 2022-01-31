@@ -1,48 +1,73 @@
-import React, { useState } from "react";
-import { IoIosClose } from "react-icons/io";
+import { useContext, useState } from "react";
+import Modal from "@mui/material/Modal";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import CloseIcon from "@mui/icons-material/Close";
+import FormControl from "@mui/material/FormControl";
 
 import { addTicker } from "../../services/tickerService";
+import { getMetaThemeColor } from "../../theme";
+import themeContext from "../../themeContext";
 import styles from "./AddTickerModal.module.scss";
-import Button from "../../shared/Button/Button";
-import TextInput from "../../shared/TextInput/TextInput";
-import Modal from "../../shared/Modal/Modal";
 
 function AddTickerModal({ onClose, refreshTickers }) {
+  const { themeMode } = useContext(themeContext);
   const [ticker, setTicker] = useState("");
   const [error, setError] = useState("");
 
-  function onChangeTicker(id, value) {
-    setTicker(value);
+  function onChangeTicker(event) {
+    setTicker(event.target.value);
   }
 
-  function onClick(event) {
+  function handleSubmit(event) {
     event.preventDefault();
 
     if (!ticker) {
       setError("Enter a ticker symbol");
     } else {
-      addTicker(ticker);
-      refreshTickers();
-      onClose();
+      if (addTicker(ticker)) {
+        setTicker(ticker);
+        refreshTickers();
+        onClose();
+      } else {
+        setError(`Unable to add ticker symbol ${ticker}`);
+      }
     }
   }
 
   return (
-    <Modal onClose={onClose} size="small">
-      <form className={styles.layout}>
-        <span className={styles.closeButton}>
-          <IoIosClose alt="Close" onClick={onClose} size="40px" />
-        </span>
-        <div className={styles.subredditInput}>
-          <TextInput
-            label="Ticker Symbol"
-            error={error}
-            onChange={onChangeTicker}
-          />
-        </div>
-        <div className={styles.addButton}>
-          <Button type="submit" label="Add" onClickEvent={onClick} />
-        </div>
+    <Modal
+      open={true}
+      onClose={onClose}
+      aria-labelledby="Add Ticker"
+      aria-describedby="Add a ticker"
+    >
+      <form
+        className={styles.layout}
+        style={{ backgroundColor: getMetaThemeColor(themeMode) }}
+        onSubmit={handleSubmit}
+      >
+        <FormControl className={styles.controlLayout} fullWidth>
+          <span className={styles.closeButton}>
+            <CloseIcon alt="Close" onClick={onClose} fontSize="medium" />
+          </span>
+          <div className={styles.subredditInput}>
+            <TextField
+              id="ticker-symbol"
+              label="Ticker Symbol"
+              variant="outlined"
+              value={ticker}
+              fullWidth
+              onChange={onChangeTicker}
+            />
+          </div>
+          {error}
+          <div className={styles.addButton}>
+            <Button type="submit" variant="contained" fullWidth>
+              Add
+            </Button>
+          </div>
+        </FormControl>
       </form>
     </Modal>
   );

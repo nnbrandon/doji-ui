@@ -1,44 +1,63 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { IoIosClose } from "react-icons/io";
+import { useHistory } from "react-router-dom";
+import CloseIcon from "@mui/icons-material/Close";
+import HomeIcon from "@mui/icons-material/Home";
+import Button from "@mui/material/Button";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import Divider from "@mui/material/Divider";
 
 import styles from "./Navbar.module.scss";
 
-import Button from "../../shared/Button/Button";
+// import Button from "../../shared/Button/Button";
 
 function Navbar({ path, navData, onCloseNav, onClickAddTickerModal }) {
-  console.log(path);
+  const history = useHistory();
   const renderNavData = navData.map((data, index) => {
-    let selectedStyle;
-    if (path === data.path) {
-      selectedStyle = styles.selected;
-    }
     return (
-      <li key={index}>
-        <Link className={selectedStyle} to={data.path}>
-          {data.text}
-        </Link>
-      </li>
+      <ListItem key={index}>
+        <ListItemButton
+          selected={path === data.path}
+          onClick={() => history.push(data.path)}
+        >
+          <ListItemText primary={data.text} />
+        </ListItemButton>
+      </ListItem>
     );
   });
 
   return (
     <div className={styles.sidebar}>
       <span>
-        <IoIosClose alt="Close" onClick={onCloseNav} size="50px" />
+        <CloseIcon alt="Close" onClick={onCloseNav} fontSize="large" />
       </span>
-      <nav className={styles.nav}>
-        <li key="Home">
-          <Link className={path === "/" ? styles.selected : ""} to="/">
-            Home
-          </Link>
-        </li>
-        <ul>{renderNavData}</ul>
+      <Divider />
+      <nav
+        className={styles.nav}
+        aria-label="navigation sidebar of ticker symbols"
+      >
+        <List>
+          <ListItem index="Home">
+            <ListItemButton
+              selected={path === "/"}
+              onClick={() => history.push("/")}
+            >
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText primary="Home" />
+            </ListItemButton>
+          </ListItem>
+          {renderNavData}
+        </List>
       </nav>
+      <Divider />
       <div className={styles.buttons}>
-        <span className={styles.buttonLayout}>
-          <Button onClickEvent={onClickAddTickerModal} label="Add Ticker" />
-        </span>
+        <Button variant="outlined" onClick={onClickAddTickerModal} fullWidth>
+          Add Ticker
+        </Button>
       </div>
     </div>
   );

@@ -1,11 +1,16 @@
+function getTickersFromStorage() {
+  const tickers = localStorage.getItem("tickers");
+  if (!tickers) {
+    return [];
+  }
+
+  return JSON.parse(tickers);
+}
+
 export function fetchTickers() {
-  const localStorageSubreddits = Object.keys(localStorage).map((key) => {
-    return {
-      path: localStorage.getItem(key),
-      text: key,
-    };
-  });
-  return localStorageSubreddits.sort((a, b) => {
+  const tickers = getTickersFromStorage();
+
+  return tickers.sort((a, b) => {
     const lowercasedA = a.text.toLowerCase();
     const lowercasedB = b.text.toLowerCase();
 
@@ -22,7 +27,19 @@ export function fetchTickers() {
 }
 
 export function addTicker(ticker) {
-  if (!localStorage.getItem(ticker)) {
-    localStorage.setItem(ticker, "/" + ticker);
+  const tickers = getTickersFromStorage();
+
+  for (const ticker of tickers) {
+    if (ticker.text === ticker) {
+      return false;
+    }
   }
+
+  tickers.push({
+    text: ticker,
+    path: "/" + ticker,
+  });
+
+  localStorage.setItem("tickers", JSON.stringify(tickers));
+  return true;
 }

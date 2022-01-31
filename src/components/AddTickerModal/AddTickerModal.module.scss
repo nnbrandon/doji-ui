@@ -1,8 +1,17 @@
 .layout {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  border: 1px solid #000;
+  padding: 5px;
+}
+
+.controlLayout {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
 }
 
 .subredditInput {
