@@ -27,7 +27,7 @@ function Navbar({ path, navData, onCloseNav, onClickAddTickerModal }) {
           selected={path === data.path}
           onClick={() => history.push(data.path)}
         >
-          <ListItemText primary={data.text} />
+          <ListItemText primary={data.symbol} />
         </ListItemButton>
       </ListItem>
     );

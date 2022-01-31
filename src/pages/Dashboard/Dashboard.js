@@ -7,7 +7,7 @@ import styles from "./Dashboard.module.scss";
 
 import AddTickerModal from "../../components/AddTickerModal/AddTickerModal";
 import Navbar from "../../components/Navbar/Navbar";
-import { fetchTickers as grabTickers } from "../../services/tickerService";
+import { fetchWatchedTickers } from "../../services/tickerService";
 
 function Dashboard({ match }) {
   const { url } = match;
@@ -16,7 +16,7 @@ function Dashboard({ match }) {
   const [showAddTickerModal, setShowAddTickerModal] = useState(false);
 
   const fetchTickers = useCallback(() => {
-    const tickers = grabTickers();
+    const tickers = fetchWatchedTickers();
     setTickers(tickers);
   }, []);
 

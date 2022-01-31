@@ -1,3 +1,15 @@
+import axios from "axios";
+
+export async function fetchTickers() {
+  try {
+    return await (
+      await axios.get("http://127.0.0.1:5000/api/v1/tickers")
+    ).data;
+  } catch (err) {
+    throw err;
+  }
+}
+
 function getTickersFromStorage() {
   const tickers = localStorage.getItem("tickers");
   if (!tickers) {
@@ -7,12 +19,12 @@ function getTickersFromStorage() {
   return JSON.parse(tickers);
 }
 
-export function fetchTickers() {
+export function fetchWatchedTickers() {
   const tickers = getTickersFromStorage();
 
   return tickers.sort((a, b) => {
-    const lowercasedA = a.text.toLowerCase();
-    const lowercasedB = b.text.toLowerCase();
+    const lowercasedA = a.symbol.toLowerCase();
+    const lowercasedB = b.symbol.toLowerCase();
 
     if (lowercasedA < lowercasedB) {
       return -1;
@@ -26,18 +38,18 @@ export function fetchTickers() {
   });
 }
 
-export function addTicker(ticker) {
+export function addTicker(newTicker) {
   const tickers = getTickersFromStorage();
 
   for (const ticker of tickers) {
-    if (ticker.text === ticker) {
+    if (ticker.symbol === newTicker.symbol) {
       return false;
     }
   }
 
   tickers.push({
-    text: ticker,
-    path: "/" + ticker,
+    ...newTicker,
+    path: "/" + newTicker.symbol,
   });
 
   localStorage.setItem("tickers", JSON.stringify(tickers));
