@@ -34,3 +34,10 @@
   height: 60%;
   overflow-x: hidden;
 }
+
+.bottomNav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 35%;
+}

@@ -11,7 +11,7 @@ import themeContext from "../../themeContext";
 import styles from "./AddTickerModal.module.scss";
 
 function AddTickerModal({ onClose, refreshTickers }) {
-  const { themeMode } = useContext(themeContext);
+  const { mode } = useContext(themeContext);
   const [ticker, setTicker] = useState("");
   const [error, setError] = useState("");
 
@@ -44,7 +44,7 @@ function AddTickerModal({ onClose, refreshTickers }) {
     >
       <form
         className={styles.layout}
-        style={{ backgroundColor: getMetaThemeColor(themeMode) }}
+        style={{ backgroundColor: getMetaThemeColor(mode) }}
         onSubmit={handleSubmit}
       >
         <FormControl className={styles.controlLayout} fullWidth>

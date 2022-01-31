@@ -7,13 +7,13 @@ import themeContext from "./themeContext";
 import { useContext } from "react";
 
 export default function BrandingProvider({ children }) {
-  const { themeMode } = useContext(themeContext);
+  const { mode } = useContext(themeContext);
   const theme = React.useMemo(() => {
-    const designTokens = getDesignTokens(themeMode);
+    const designTokens = getDesignTokens(mode);
     let newTheme = createTheme(designTokens);
     newTheme = deepmerge(newTheme, getThemedComponents(newTheme));
     return newTheme;
-  }, [themeMode]);
+  }, [mode]);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

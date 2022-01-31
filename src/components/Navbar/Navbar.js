@@ -8,13 +8,18 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
 
+import themeContext from "../../themeContext";
 import styles from "./Navbar.module.scss";
-
-// import Button from "../../shared/Button/Button";
+import { useContext } from "react";
 
 function Navbar({ path, navData, onCloseNav, onClickAddTickerModal }) {
+  const { mode, setMode } = useContext(themeContext);
   const history = useHistory();
+
   const renderNavData = navData.map((data, index) => {
     return (
       <ListItem key={index}>
@@ -27,6 +32,10 @@ function Navbar({ path, navData, onCloseNav, onClickAddTickerModal }) {
       </ListItem>
     );
   });
+
+  function onClickMode() {
+    setMode();
+  }
 
   return (
     <div className={styles.sidebar}>
@@ -54,10 +63,24 @@ function Navbar({ path, navData, onCloseNav, onClickAddTickerModal }) {
         </List>
       </nav>
       <Divider />
-      <div className={styles.buttons}>
-        <Button variant="outlined" onClick={onClickAddTickerModal} fullWidth>
-          Add Ticker
-        </Button>
+      <div className={styles.bottomNav}>
+        <div className={styles.buttons}>
+          <Button variant="outlined" onClick={onClickAddTickerModal} fullWidth>
+            Add Ticker
+          </Button>
+        </div>
+        <div>
+          {mode === "dark" && (
+            <IconButton onClick={onClickMode}>
+              <LightModeIcon />
+            </IconButton>
+          )}
+          {mode === "light" && (
+            <IconButton onClick={onClickMode}>
+              <DarkModeIcon />
+            </IconButton>
+          )}
+        </div>
       </div>
     </div>
   );

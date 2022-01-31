@@ -10,15 +10,15 @@ function App() {
   const mode = upperTheme.palette.mode;
   const [themeMode, setThemeMode] = useState(mode);
 
-  useEffect(() => {
-    setThemeMode(mode);
-  }, [mode]);
+  function toggleMode() {
+    setThemeMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+  }
 
   return (
     <Fragment>
-      <themeContext.Provider value={{ themeMode, setThemeMode }}>
+      <themeContext.Provider value={{ mode: themeMode, setMode: toggleMode }}>
         <BrandingProvider>
-          <AppRouter mode={mode} />
+          <AppRouter />
         </BrandingProvider>
       </themeContext.Provider>
     </Fragment>
