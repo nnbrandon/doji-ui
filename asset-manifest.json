@@ -1,27 +1,27 @@
 {
   "files": {
     "main.css": "/doji-ui/static/css/main.77ba97ae.chunk.css",
-    "main.js": "/doji-ui/static/js/main.58c95bd5.chunk.js",
-    "main.js.map": "/doji-ui/static/js/main.58c95bd5.chunk.js.map",
-    "runtime-main.js": "/doji-ui/static/js/runtime-main.f62ab111.js",
-    "runtime-main.js.map": "/doji-ui/static/js/runtime-main.f62ab111.js.map",
+    "main.js": "/doji-ui/static/js/main.a295e191.chunk.js",
+    "main.js.map": "/doji-ui/static/js/main.a295e191.chunk.js.map",
+    "runtime-main.js": "/doji-ui/static/js/runtime-main.93520ed4.js",
+    "runtime-main.js.map": "/doji-ui/static/js/runtime-main.93520ed4.js.map",
     "static/css/2.4e2b88cd.chunk.css": "/doji-ui/static/css/2.4e2b88cd.chunk.css",
-    "static/js/2.11ff332b.chunk.js": "/doji-ui/static/js/2.11ff332b.chunk.js",
-    "static/js/2.11ff332b.chunk.js.map": "/doji-ui/static/js/2.11ff332b.chunk.js.map",
-    "static/js/3.b53e3cd2.chunk.js": "/doji-ui/static/js/3.b53e3cd2.chunk.js",
-    "static/js/3.b53e3cd2.chunk.js.map": "/doji-ui/static/js/3.b53e3cd2.chunk.js.map",
+    "static/js/2.bb8fd1c7.chunk.js": "/doji-ui/static/js/2.bb8fd1c7.chunk.js",
+    "static/js/2.bb8fd1c7.chunk.js.map": "/doji-ui/static/js/2.bb8fd1c7.chunk.js.map",
+    "static/js/3.8202cc5e.chunk.js": "/doji-ui/static/js/3.8202cc5e.chunk.js",
+    "static/js/3.8202cc5e.chunk.js.map": "/doji-ui/static/js/3.8202cc5e.chunk.js.map",
     "index.html": "/doji-ui/index.html",
     "static/css/2.4e2b88cd.chunk.css.map": "/doji-ui/static/css/2.4e2b88cd.chunk.css.map",
     "static/css/main.77ba97ae.chunk.css.map": "/doji-ui/static/css/main.77ba97ae.chunk.css.map",
-    "static/js/2.11ff332b.chunk.js.LICENSE.txt": "/doji-ui/static/js/2.11ff332b.chunk.js.LICENSE.txt",
+    "static/js/2.bb8fd1c7.chunk.js.LICENSE.txt": "/doji-ui/static/js/2.bb8fd1c7.chunk.js.LICENSE.txt",
     "static/media/FTSE.300e1f4b.csv": "/doji-ui/static/media/FTSE.300e1f4b.csv",
     "static/media/index.scss": "/doji-ui/static/media/roboto-vietnamese-700-normal.3096f18a.woff2"
   },
   "entrypoints": [
-    "static/js/runtime-main.f62ab111.js",
+    "static/js/runtime-main.93520ed4.js",
     "static/css/2.4e2b88cd.chunk.css",
-    "static/js/2.11ff332b.chunk.js",
+    "static/js/2.bb8fd1c7.chunk.js",
     "static/css/main.77ba97ae.chunk.css",
-    "static/js/main.58c95bd5.chunk.js"
+    "static/js/main.a295e191.chunk.js"
   ]
 }
