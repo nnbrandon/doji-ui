@@ -1,5 +1,7 @@
 import * as d3 from "d3";
-import { map, filter } from "lodash";
+import map from "lodash/map";
+import filter from "lodash/filter";
+
 import data from "./FTSE.csv";
 
 export function drawChart() {

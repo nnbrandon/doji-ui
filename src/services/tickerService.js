@@ -42,14 +42,14 @@ export function addTicker(newTicker) {
   const tickers = getTickersFromStorage();
 
   for (const ticker of tickers) {
-    if (ticker.symbol === newTicker.symbol) {
+    if (ticker.symbol === newTicker) {
       return false;
     }
   }
 
   tickers.push({
-    ...newTicker,
-    path: "/" + newTicker.symbol,
+    symbol: newTicker,
+    path: "/" + newTicker,
   });
 
   localStorage.setItem("tickers", JSON.stringify(tickers));

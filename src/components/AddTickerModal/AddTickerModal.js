@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import CloseIcon from "@mui/icons-material/Close";
 import FormControl from "@mui/material/FormControl";
 import Autocomplete from "@mui/material/Autocomplete";
+import isObject from "lodash/isObject";
 
 import { addTicker, fetchTickers } from "../../services/tickerService";
 import { getMetaThemeColor } from "../../theme";
@@ -14,9 +15,9 @@ import styles from "./AddTickerModal.module.scss";
 function AddTickerModal({ onClose, refreshTickers }) {
   const { mode } = useContext(themeContext);
   const [tickerList, setTickerList] = useState([]);
-  const [ticker, setTicker] = useState(null);
   const [tickerInputValue, setTickerInputValue] = useState("");
   const [error, setError] = useState("");
+  const [showError, setShowError] = useState(false);
 
   console.log(tickerList);
   useEffect(() => {
@@ -27,24 +28,9 @@ function AddTickerModal({ onClose, refreshTickers }) {
       .catch((err) => {
         setTickerList([
           {
-            symbol: "AMZN",
-            companyName: "Amazon",
-            sector: "Consumer Discretionary",
-          },
-          {
-            symbol: "AAPL",
-            companyName: "Apple",
-            sector: "Information Technology",
-          },
-          {
-            symbol: "NFLX",
-            companyName: "Netflix",
-            sector: "Communication Services",
-          },
-          {
-            symbol: "TSLA",
-            companyName: "Tesla",
-            sector: "Consumer Discretionary",
+            symbol: "",
+            companyName: "",
+            sector: "",
           },
         ]);
         console.error(err);
@@ -54,14 +40,16 @@ function AddTickerModal({ onClose, refreshTickers }) {
   function handleSubmit(event) {
     event.preventDefault();
 
-    if (!ticker) {
+    if (!tickerInputValue) {
       setError("A ticker symbol must be provided.");
+      setShowError(true);
     } else {
-      if (addTicker(ticker)) {
+      if (addTicker(tickerInputValue)) {
         refreshTickers();
         onClose();
       } else {
         setError(`Unable to add ticker symbol ${tickerInputValue}.`);
+        setShowError(true);
       }
     }
   }
@@ -89,29 +77,28 @@ function AddTickerModal({ onClose, refreshTickers }) {
               fullWidth
               id="ticker-symbol"
               options={tickerList}
-              getOptionLabel={(option) =>
-                `${option.symbol} | ${option.companyName}`
-              }
-              onChange={(event, newValue) => {
-                setTicker(newValue);
+              getOptionLabel={(option) => {
+                if (isObject(option)) {
+                  return `${option.symbol} | ${option.companyName}`;
+                }
+
+                return option;
               }}
-              value={ticker}
               inputValue={tickerInputValue}
               onInputChange={(event, newInputValue) => {
+                setError("");
+                setShowError(false);
                 if (!newInputValue) {
-                  setError("");
                   setTickerInputValue("");
                   return;
                 }
-
-                setError("");
                 const symbol = newInputValue.split("|")[0].trim();
                 setTickerInputValue(symbol);
               }}
               renderInput={(params) => (
                 <TextField
                   {...params}
-                  error={error}
+                  error={showError}
                   helperText={error}
                   label="Enter a ticker symbol"
                   variant="outlined"
