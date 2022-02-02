@@ -19,7 +19,6 @@ function AddTickerModal({ onClose, refreshTickers }) {
   const [error, setError] = useState("");
   const [showError, setShowError] = useState(false);
 
-  console.log(tickerList);
   useEffect(() => {
     fetchTickers()
       .then((tickers) => {

@@ -1,12 +1,15 @@
 import { useEffect } from "react";
 
-import { drawChart } from "./D3CandleChart";
+import { drawChart } from "./d3-CandlestickChart";
 import styles from "./CandlestickChart.module.scss";
 
-export default function CandlestickChart({ data }) {
+export default function CandlestickChart({ chartData }) {
   useEffect(() => {
-    drawChart();
-  }, []);
+    setTimeout(() => {
+      console.log("called");
+      drawChart(chartData);
+    }, 500);
+  }, [chartData]);
 
   return <svg id="container" className={styles.container} />;
 }
