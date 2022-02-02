@@ -86,7 +86,7 @@ function TickerView({ match }) {
       <span className={styles.latestText}>{statusText}</span>
       <div>
         <div>{renderChart()}</div>
-        <div>Table goes here</div>
+        {/* <div>Table goes here</div> */}
       </div>
     </div>
   );
