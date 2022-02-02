@@ -28,10 +28,16 @@ export function drawChart(chartData) {
   console.log(d3.select("#container").node().clientWidth);
 
   const container = d3.select("#container");
+  const tooltip = d3
+    .select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("width", "30%")
+    .style("z-index", 30)
+    .style("white-space", "pre-wrap")
+    .style("visibility", "hidden");
 
   const margin = { top: 15, right: 65, bottom: 205, left: 50 },
-    // w = 1000 - margin.left - margin.right,
-    // h = 625 - margin.top - margin.bottom;
     w = container.node().clientWidth / 1.1,
     h = container.node().clientHeight / 1.5;
 
@@ -221,4 +227,30 @@ export function drawChart(chartData) {
       gY.transition().duration(250).call(d3.axisLeft().scale(yScale));
     }, 500);
   }
+
+  const formatValue = d3.format(".2f");
+  candles
+    .on("mousemove", (event, data) => {
+      const text = `
+        ${
+          months[data.date.getMonth()]
+        } ${data.date.getDate()} ${data.date.getFullYear()}\n
+        Open: ${formatValue(data.open)}\n
+        Close: ${formatValue(data.close)}\n
+        Low: ${formatValue(data.low)}\n
+        High: ${formatValue(data.high)}`;
+
+      console.log(data);
+      return (
+        tooltip
+          .style("visibility", "visible")
+          .style("top", event.pageY - 10 + "px")
+          // .style("left", event.pageX + 10 + "px")
+          .style("left", event.pageX - 70 + "px")
+          .text(text)
+      );
+    })
+    .on("mouseout", () => {
+      return tooltip.style("visibility", "hidden");
+    });
 }

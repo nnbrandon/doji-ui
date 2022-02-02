@@ -80,7 +80,8 @@ function TickerView({ match }) {
   return (
     <div>
       <h1>Ticker page for {ticker}</h1>
-      <Button variant="outlined" onClick={refreshStockData} disabled={isLatest}>
+      {/* <Button variant="outlined" onClick={refreshStockData} disabled={isLatest}> */}
+      <Button variant="outlined" onClick={refreshStockData}>
         Refresh Stock Data
       </Button>
       <span className={styles.latestText}>{statusText}</span>
