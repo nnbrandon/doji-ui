@@ -12,7 +12,7 @@ import styles from "./TickerView.module.scss";
 
 function TickerView({ match }) {
   const { ticker } = match.params;
-  const [isLatest, setIsLatest] = useState(false);
+  // const [isLatest, setIsLatest] = useState(false);
   const [loading, setLoading] = useState(false);
   const [chartData, setChartData] = useState([]);
   const [statusText, setStatusText] = useState("");
@@ -27,7 +27,7 @@ function TickerView({ match }) {
         } else {
           setStatusText("Stock data is not up-to-date");
         }
-        setIsLatest(isLatest);
+        // setIsLatest(isLatest);
         setChartData(data);
       })
       .catch((err) => {
@@ -39,7 +39,7 @@ function TickerView({ match }) {
       });
   }, [ticker]);
 
-  function refreshStockData() {
+  function refreshData() {
     const todayDate = new Date();
     const sixMonthsBack = new Date();
     sixMonthsBack.setMonth(sixMonthsBack.getMonth() - 6);
@@ -55,7 +55,7 @@ function TickerView({ match }) {
         } else {
           setStatusText("Stock data is not up-to-date");
         }
-        setIsLatest(isLatest);
+        // setIsLatest(isLatest);
         setChartData(data);
       })
       .catch((err) => {
@@ -69,7 +69,11 @@ function TickerView({ match }) {
 
   function renderChart() {
     if (loading) {
-      return <CircularProgress />;
+      return (
+        <div className={styles.progress}>
+          <CircularProgress />
+        </div>
+      );
     } else if (!loading && chartData && chartData.length) {
       return <CandlestickChart chartData={chartData} />;
     } else {
@@ -80,9 +84,8 @@ function TickerView({ match }) {
   return (
     <div>
       <h1>Ticker page for {ticker}</h1>
-      {/* <Button variant="outlined" onClick={refreshStockData} disabled={isLatest}> */}
-      <Button variant="outlined" onClick={refreshStockData}>
-        Refresh Stock Data
+      <Button variant="outlined" onClick={refreshData}>
+        Refresh Data
       </Button>
       <span className={styles.latestText}>{statusText}</span>
       <div>
